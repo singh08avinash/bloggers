@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Blogs Titles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blogs_titles.each do |blogs_title| %>
+      <tr>
+        <td><%= blogs_title.name %></td>
+        <td><%= blogs_title.body %></td>
+        <td><%= link_to 'Show', blogs_title %></td>
+        <%- if current_user.present? %>
+          <%- if current_user.id == blogs_title.user_id %>
+            <td><%= link_to 'Edit', edit_blogs_title_path(blogs_title) %></td>
+            <td><%= link_to 'Destroy', blogs_title, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%- if current_user.present? %>
+  <%= link_to 'New Blogs Title', new_blogs_title_path %>
+<% end %>

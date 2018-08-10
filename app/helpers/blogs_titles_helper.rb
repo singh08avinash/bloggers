@@ -1,0 +1,2 @@
+module BlogsTitlesHelper
+end

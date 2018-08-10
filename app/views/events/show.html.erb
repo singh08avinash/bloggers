@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @event.place %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @event.body %>
+</p>
+
+<%- if current_user.present? %>
+	<%= link_to 'Edit', edit_event_path(@event) %> |
+	<%= link_to 'Back', events_path %>
+<% end %>
+
+<%= link_to 'Add Comment', new_comment_path, class: "nav-link" %>

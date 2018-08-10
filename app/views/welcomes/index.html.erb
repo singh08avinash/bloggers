@@ -1,0 +1,86 @@
+<h1>All Blogs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @all_blog_titles.each do |all_blog_titles| %>
+      <tr>
+        <td><%= all_blog_titles.name %></td>
+        <td><%= all_blog_titles.body %></td>
+        <td><%= link_to 'Show', all_blog_titles %></td>
+        <%- if current_user.present? %>
+          <%- if current_user.id == all_blog_titles.user_id %>
+            <td><%= link_to 'Edit', edit_blogs_title_path(all_blog_titles) %></td>
+            <td><%= link_to 'Destroy', all_blog_titles, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+<br />
+
+<h1>All Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Place</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @all_events.each do |event| %>
+      <tr>
+        <td><%= event.title %></td>
+        <td><%= event.place %></td>
+        <td><%= event.body %></td>
+        <td><%= link_to 'Show', event_path(event) %></td>
+        <%- if current_user.present? %>
+          <%- if current_user.id == event.user_id %>
+            <td><%= link_to 'Edit', edit_event_path(event) %></td>
+            <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+<br />
+<h1>Images</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>All Images</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @all_images.each do |image| %>
+      <tr>
+        <td><%= (image_tag image.image.url(:medium)) %></td>
+        <td><%= link_to 'Show', image %></td>
+        <%- if current_user.present? %>
+          <%- if current_user.id == image.user_id %> 
+            <td><%= link_to 'Edit', edit_image_path(image) %></td>
+            <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
